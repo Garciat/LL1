@@ -1,0 +1,27 @@
+name:                LL1
+version:             0.1.0.0
+license:             MIT
+license-file:        LICENSE
+author:              Gabriel Garcia
+maintainer:          garciat@live.com
+category:            Language
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable LL1
+  main-is:            Main.hs
+  
+  other-extensions:   MultiParamTypeClasses
+                    , FlexibleInstances
+                    , StandaloneDeriving
+                    , GADTs
+                    , FunctionalDependencies
+                    , FlexibleContexts
+  
+  build-depends:      base >=4.8 && <4.9
+                    , mtl >=2.2 && <2.3
+                    , containers >=0.5 && <0.6
+  
+  -- hs-source-dirs:     src
+  -- default-language:   Haskell2010
