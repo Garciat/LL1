@@ -8,19 +8,6 @@ import LL1
 
 import Prelude hiding ((*>))
 
-import Control.Monad
-import Control.Monad.ST
-import Control.Monad.Writer.Strict
-
-import Data.IORef
-import Data.STRef
-import Data.List
-import Data.Maybe
-
-import qualified Data.Sequence as Seq
-import qualified Data.Set as Set
-import qualified Data.Map.Strict as Map
-
 ---
 
 data Literal
