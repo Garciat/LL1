@@ -170,18 +170,23 @@ isTag _      = False
 
 tag (RTag t _) = t
 
-first :: (Eq t, Eq a) => Rule t a -> [Rule t a]
-first = nub . go
+first :: (Ord t, Eq a) => Rule t a -> [Rule t a]
+first = go Set.empty
   where
-    go r@REps{} = [r]
-    go r@RTer{} = [r]
+    go ks r@REps{} = [r]
+    go ks r@RTer{} = [r]
     
-    go r@RTag{} = concatMap first (tagAlts r)
+    go ks r@(RTag t _) =
+      if Set.member t ks then
+        []
+      else
+        concatMap (go (Set.insert t ks)) (tagAlts r)
     
-    go (RSeq a b) =
-      let y = first a; y' = y \\ [eps] in
+    go ks (RSeq a b) =
+      let y  = go ks a
+          y' = y \\ [eps] in
         if hasEps y then
-          y' ++ first b
+          y' ++ go ks b
         else
           y'
 
